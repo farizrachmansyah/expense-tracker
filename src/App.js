@@ -18,7 +18,6 @@ const App = () => {
   const addExpenseHandler = (expense) => {
     setExpenses((prevState) => {
       const data = [...prevState, expense];
-      console.log(data);
       localStorage.setItem('EXPENSES_STORAGE', JSON.stringify(data));
       return data;
     });
