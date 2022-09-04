@@ -1,17 +1,32 @@
 import ExpenseItem from './ExpenseItem';
-import './ExpensesList.css';
+import styled from 'styled-components';
+
+const ExpensesFound = styled.ul`
+  list-style: none;
+  padding: 0;
+
+  &__fallback {
+    color: white;
+    text-align: center;
+  }
+`;
+const ExpensesNotFound = styled.h2`
+  margin: 32px 0 16px 0;
+  color: white;
+  text-align: center;
+`;
 
 const ExpensesList = (props) => {
   if (props.items.length > 0) {
     return (
-      <ul className="expenses-list">
+      <ExpensesFound>
         {props.items.map((expense) => (
           <ExpenseItem expense={expense} key={expense.id} />
         ))}
-      </ul>
+      </ExpensesFound>
     );
   } else {
-    return <h2 className="expenses-list__fallback">No Expenses Found.</h2>;
+    return <ExpensesNotFound>No Expenses Found.</ExpensesNotFound>;
   }
 };
 

@@ -1,5 +1,32 @@
 import { useState } from 'react';
-import './ExpenseForm.css';
+import styled from 'styled-components';
+
+const FormControls = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  text-align: left;
+
+  & label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  & input {
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 20rem;
+    max-width: 100%;
+  }
+`;
+
+const FormActions = styled.div`
+  text-align: right;
+`;
 
 const ExpenseForm = (props) => {
   const [userInput, setUserInput] = useState({
@@ -54,7 +81,7 @@ const ExpenseForm = (props) => {
 
   return (
     <form onSubmit={submit}>
-      <div className="new-expense__controls">
+      <FormControls>
         <div className="new-expense__control">
           <label htmlFor="">Title</label>
           <input type="text" value={userInput.title} onChange={changeTitle} required />
@@ -67,13 +94,13 @@ const ExpenseForm = (props) => {
           <label htmlFor="">Date</label>
           <input type="date" value={userInput.date} min="2019-01-01" max="2022-12-31" onChange={changeDate} required />
         </div>
-      </div>
-      <div className="new-expense__actions">
+      </FormControls>
+      <FormActions>
         <button type="button" onClick={props.onCancelForm}>
           Cancel
         </button>
         <button type="submit">Add Expense</button>
-      </div>
+      </FormActions>
     </form>
   );
 };
